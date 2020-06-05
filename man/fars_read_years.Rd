@@ -23,8 +23,8 @@ This function will search and read the FARS files in the current directory with 
              or NULL if the file not exist.
 }
 \examples{
-fars_read_years(2013)
-fars_read_years(c(2013, 2014))
+\dontrun{fars_read_years(2013)}
+\dontrun{fars_read_years(c(2013, 2014))}
 
 }
 \seealso{

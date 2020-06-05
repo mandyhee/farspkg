@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "homengni0316@gmail.com")
 Description: This package is the coursework for Coursera Course: Building R Package. The package will utilize data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes, to perform data and graphic analysis.
-Depends: R (>= 3.6.3)
+Depends: R (>= 3.6.0)
 Imports: 
     knitr (>= 1.20),
     dplyr (>= 0.7.99.9000),

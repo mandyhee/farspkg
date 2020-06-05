@@ -15,7 +15,7 @@
 #'         which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
 #'         For more information, please see \url{https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/23}.
 #'
-#' @examples fars_read("accident_2013.csv.bz2")
+#' @examples \dontrun{fars_read("accident_2013.csv.bz2")}
 #'
 #' @importFrom readr read_csv
 #' @import dplyr
@@ -72,8 +72,8 @@ make_filename <- function(year) {
 #' @source Data source: US National Highway Traffic Safety Administration's Fatality Analysis Reporting System (FARS),
 #'         which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
 #'
-#' @examples fars_read_years(2013)
-#' @examples fars_read_years(c(2013, 2014))
+#' @examples \dontrun{fars_read_years(2013)}
+#' @examples \dontrun{fars_read_years(c(2013, 2014))}
 #'
 #' @import dplyr
 #'
@@ -86,9 +86,8 @@ fars_read_years <- function(years) {
                 file <- make_filename(year)
                 tryCatch({
                         dat <- fars_read(file)
-                        head(dat)
                         dplyr::mutate(dat, year = year) %>%
-                                dplyr::select(MONTH, year)
+                                dplyr::select(.data$MONTH, year)
                 }, error = function(e) {
                         warning("invalid year: ", year)
                         return(NULL)
@@ -113,7 +112,8 @@ fars_read_years <- function(years) {
 #' @source Data source: US National Highway Traffic Safety Administration's Fatality Analysis Reporting System (FARS),
 #'         which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
 #'
-#' @examples fars_summarize_years(2013), fars_summarize_years(c(2013, 2014))
+#' @examples \dontrun{fars_summarize_years(2013)},
+#' @examples \dontrun{fars_summarize_years(c(2013, 2014))}
 #'
 #' @import dplyr
 #' @importFrom tidyr spread
@@ -122,9 +122,9 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
-                dplyr::group_by(year, MONTH) %>%
+                dplyr::group_by(.data$year, .data$MONTH) %>%
                 dplyr::summarize(n = n()) %>% # number of injuries per month
-                tidyr::spread(year, n)
+                tidyr::spread(.data$year, n)
 }
 
 #' Map displaying location of fatal injuries for selected state and year
@@ -216,7 +216,7 @@ fars_map_state <- function(state.num, year) {
 
         if(!(state.num %in% unique(data$STATE)))
                 stop("invalid STATE number: ", state.num)
-        data.sub <- dplyr::filter(data, STATE == state.num)
+        data.sub <- dplyr::filter(data, .data$STATE == state.num)
         if(nrow(data.sub) == 0L) {
                 message("no accidents to plot")
                 return(invisible(NULL))

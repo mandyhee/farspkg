@@ -22,6 +22,7 @@ This function will summarize the number of injuries counts per month for the giv
              or return warning if the data with given year does not exist.
 }
 \examples{
-fars_summarize_years(2013), fars_summarize_years(c(2013, 2014))
+\dontrun{fars_summarize_years(2013)},
+\dontrun{fars_summarize_years(c(2013, 2014))}
 
 }
