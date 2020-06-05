@@ -1,0 +1,62 @@
+---
+title: "Introduction to `farspkg` Package"
+author: Meng-Ni Ho
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(farspkg)
+library(knitr)
+```
+
+## I. Introduction
+This R package is the coursework from Coursera: Building R Package. The package will utilize data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes, to perform data and graphic analysis.
+For more information regarding FARS database and documentation, please see https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/23.
+
+## II. Load data
+1. Use `make_filename()` to create a FARS csv extension filename for the given year. For more information, type `?make_filename` in the R console.
+```{r}
+filename_2013 = make_filename(year = 2013)
+print(filename_2013)
+```
+
+2. Use `fars_read()` to read in the data of given year. If the data exist, it will return the dataframe; if the data does not exist, it will return ERROR. For more information, type `?fars_read` in the R console.
+```{r}
+fars_data = fars_read(filename = filename_2013)
+head(fars_data)
+names(fars_data)
+```
+
+We can see that FARS data contain information about the location (`STATE`, `COUNTY`, `CITY`, `LONGITUD`, `LATITUDE`) and time (`MONTH`, `DAY`, `YEAR`) the fatal injuries occured.
+
+## III. Read in multiple years of FARS data
+Function `fars_read_year()` combined `make_filename()` and `fars_read()`, and can read FARS data in multiple years, and return dataframe seperate by the given year.  If the data corresponds to the given year does not exist, a WARNING will return. For more information, type `?fars_read_year` in the R console.
+```{r}
+fars_read_years(years = c(2013, 2014))
+```
+
+## III. Summarize number of fatal injuries
+Use `fars_summarize_years()` to create a summary table of number of fatal injuries per month for the given years (in wide format). This function can take in multiple years as well. If the data corresponds to the given year does not exist, an ERROR will return. For more information, type `?fars_summarize_years` in the R console.
+```{r}
+knitr::kable(fars_summarize_years(years = c(2013:2015))) 
+```
+
+### IV. Mapping fatal injuries
+Use `fars_map_state()` to display the fatal injuries for the given state (use state code) and year. For more information regarding to state code, type `?fars_map_state` in the R console.
+```{r}
+fars_map_state(state.num = 06, year = 2013) # California
+fars_map_state(state.num = 26, year = 2013) # Michigan, Go blue!!
+```
+
