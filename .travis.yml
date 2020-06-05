@@ -2,3 +2,6 @@
 
 language: R
 cache: packages
+sudo: false
+cache: packages
+r_github_packages: https://github.com/mandyhee/farspkg
