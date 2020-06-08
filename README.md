@@ -27,7 +27,7 @@ Install from github:
 `devtools::install_github("mandyhee/farspkg", build_vignettes = T)`
 
 ## Usage 
-<pre><code>
+```R
 # load library 
 library(farspkg) 
 
@@ -47,5 +47,5 @@ fars_summarize_years(years = c(2013, 2014))
 
 # mapping fatal injuries (for state code, please refer to help documentation) 
 fars_map_state(state.num = 06, year = 2013) 
-</code></pre>
+```
 
