@@ -2,7 +2,6 @@
 
 #### R package: `farspkg`, this is the coursework for Coursera Mastering Software Development in R: Building R Package. 
 The package will utilize data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes, to perform data and graphic analysis.
-Depends: R (>= 3.6.0)
 
 ## Repo directories
 ### R/
@@ -24,4 +23,28 @@ Contain Rmarkdown that generates vignette, created by `usethis::use_vignette("in
 Contain vignettes files (`.R`, `.html`) knitted from Rmarkdown using `devtools::build_vignettes()`.
 
 ## Package installation
+Install from github:   
 `devtools::install_github("mandyhee/farspkg", build_vignettes = T)`
+
+## Usage 
+` # load library
+library(farspkg)
+
+ # create filename
+filename_2013 = make_filename(year = 2013)
+print(filename_2013)
+## [1] "accident_2013.csv.bz2"
+
+# read file
+fars_data = fars_read(filename = filename_2013)
+
+# read file: multiple years
+fars_read_years(years = c(2013, 2014))
+
+# summarize number of fatal injuries
+fars_summarize_years(years = c(2013, 2014))
+
+# mapping fatal injuries (for state code, please refer to help documentation)
+fars_map_state(state.num = 06, year = 2013)
+
+`
