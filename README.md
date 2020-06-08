@@ -27,24 +27,25 @@ Install from github:
 `devtools::install_github("mandyhee/farspkg", build_vignettes = T)`
 
 ## Usage 
-` # load library
-library(farspkg)
+<pre><code>
+# load library 
+library(farspkg) 
 
- # create filename
-filename_2013 = make_filename(year = 2013)
-print(filename_2013)
-## [1] "accident_2013.csv.bz2"
+# create filename  
+filename_2013 = make_filename(year = 2013)  
+print(filename_2013)  
+## [1] "accident_2013.csv.bz2"  
 
-# read file
-fars_data = fars_read(filename = filename_2013)
+# read file 
+fars_data = fars_read(filename = filename_2013) 
 
-# read file: multiple years
-fars_read_years(years = c(2013, 2014))
+# read file: multiple years 
+fars_read_years(years = c(2013, 2014)) 
 
-# summarize number of fatal injuries
-fars_summarize_years(years = c(2013, 2014))
+# summarize number of fatal injuries 
+fars_summarize_years(years = c(2013, 2014)) 
 
-# mapping fatal injuries (for state code, please refer to help documentation)
-fars_map_state(state.num = 06, year = 2013)
+# mapping fatal injuries (for state code, please refer to help documentation) 
+fars_map_state(state.num = 06, year = 2013) 
+</code></pre>
 
-`
