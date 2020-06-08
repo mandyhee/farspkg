@@ -24,8 +24,9 @@ Contain vignettes files (`.R`, `.html`) knitted from Rmarkdown using `devtools::
 
 ## Package installation
 Install from github:   
-`devtools::install_github("mandyhee/farspkg", build_vignettes = T)`
-
+```R
+devtools::install_github("mandyhee/farspkg", build_vignettes = T)
+```
 ## Obtain raw data 
 Store csv raw data from `inst/exdata` to current directory.  
 
